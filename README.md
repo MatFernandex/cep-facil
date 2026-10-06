@@ -38,7 +38,7 @@ Acesse `http://127.0.0.1:4175`. Esse servidor existe **apenas para desenvolvimen
 | `js/configuracao.js` | Nome e link pessoal do autor |
 | `testes/cep.test.cjs` | Verificação das regras e falhas simuladas, sem dependências |
 
-Os ícones seguem os traços Lucide, com espessura 2,75. Fontes Caprasimo e Figtree são carregadas do Google Fonts, com fontes do sistema como alternativa. O site não depende do código do Agro Check para funcionar.
+Os ícones seguem os traços Lucide, com espessura 2,75; os avisos de licença estão em `LICENCA-ICONES.txt`. Fontes Caprasimo e Figtree são carregadas do Google Fonts, com fontes do sistema como alternativa. O site não depende do código do Agro Check para funcionar.
 
 ## Os sete incrementos do enunciado
 
