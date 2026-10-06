@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Consulte um CEP e encontre rua, bairro, cidade e estado. Copie o endereço e consulte seu histórico neste navegador. Grátis e sem cadastro.">
+  <meta name="theme-color" content="rgb(39, 84, 23)">
+  <title>CEP Fácil — consulte e copie um endereço</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/configuracao.js" defer></script>
+  <script src="js/cep.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <a class="pular" href="#consulta">Pular para a consulta</a>
+  <svg class="icones" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icone-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="icone-busca" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="icone-copia" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+    <symbol id="icone-check" viewBox="0 0 24 24"><path d="m20 6-11 11-5-5"/></symbol>
+    <symbol id="icone-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="icone-escudo" viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11"/><path d="m9 12 2 2 4-4"/></symbol>
+  </svg>
+  <header class="cabecalho">
+    <div class="limite cabecalho-conteudo">
+      <a class="marca" href="./" aria-label="CEP Fácil, início"><span class="marca-icone"><svg class="icone"><use href="#icone-pin"/></svg></span><span>cep<span class="marca-facil">fácil</span><span class="marca-ponto">.</span></span></a>
+      <nav aria-label="Navegação principal"><a href="#como-usar">Como usar</a><span class="selo">Grátis, sem cadastro</span></nav>
+    </div>
+  </header>
+  <main class="limite">
+    <section class="abertura" aria-labelledby="titulo">
+      <p class="sobretitulo">UM CEP. UM ENDEREÇO. PRONTO.</p>
+      <h1 id="titulo">Encontre o endereço<br>sem complicação<span class="marca-ponto">.</span></h1>
+      <p>Digite o CEP, confira os dados e copie o endereço.</p>
+    </section>
+    <div class="area-principal">
+      <div class="ferramenta">
+        <section class="consulta" id="consulta" aria-label="Consultar endereço por CEP">
+          <form id="formulario-cep" novalidate>
+            <label for="cep">Qual CEP você quer consultar?</label>
+            <div class="linha-busca">
+              <div class="campo-cep"><svg class="icone"><use href="#icone-pin"/></svg><input id="cep" name="cep" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="12" placeholder="00000-000" aria-describedby="dica-cep mensagem" spellcheck="false"></div>
+              <button id="buscar" class="botao botao-primario" type="submit"><svg class="icone"><use href="#icone-busca"/></svg><span id="texto-buscar">Consultar CEP</span></button>
+            </div>
+            <p id="dica-cep" class="dica">São 8 números, com ou sem hífen.</p>
+            <p id="mensagem" class="mensagem" role="status" aria-live="polite" hidden></p>
+          </form>
+          <div id="vazio" class="vazio"><span class="vazio-icone"><svg class="icone"><use href="#icone-pin"/></svg></span><h2>Seu endereço aparece aqui</h2><p>Tem um CEP em mãos? Comece pela busca acima.</p><button id="exemplo" type="button" class="link-botao">Experimentar com 01001-000</button></div>
+          <section id="resultado" class="resultado" aria-labelledby="titulo-resultado" tabindex="-1" hidden>
+            <div class="resultado-topo"><span class="etiqueta"><svg class="icone"><use href="#icone-check"/></svg><span id="origem-resultado">Endereço encontrado</span></span><span id="cep-resultado" class="numero-cep"></span></div>
+            <h2 id="titulo-resultado"></h2><p id="cidade-resultado" class="cidade-resultado"></p>
+            <dl class="dados-endereco"><div><dt>Bairro</dt><dd id="bairro-resultado"></dd></div><div><dt>Estado</dt><dd id="estado-resultado"></dd></div><div><dt>DDD</dt><dd id="ddd-resultado"></dd></div><div><dt>Região</dt><dd id="regiao-resultado"></dd></div></dl>
+            <p id="complemento-resultado" class="complemento" hidden></p>
+            <div class="resultado-rodape"><button id="copiar" class="botao botao-primario" type="button"><svg class="icone"><use href="#icone-copia"/></svg><span>Copiar endereço</span></button><p id="fonte-resultado" class="fonte"></p></div>
+            <div id="copia-manual" class="copia-manual" hidden><label for="texto-copia">Selecione o endereço abaixo e copie:</label><textarea id="texto-copia" rows="4" readonly></textarea></div>
+          </section>
+          <div class="nota-privacidade"><svg class="icone"><use href="#icone-escudo"/></svg><span>Seu histórico fica apenas neste navegador.</span></div>
+        </section>
+        <section class="historico" aria-labelledby="titulo-historico"><div class="titulo-linha"><h2 id="titulo-historico"><svg class="icone"><use href="#icone-relogio"/></svg>Consultas recentes</h2><button id="limpar-historico" class="link-botao" type="button" hidden>Limpar histórico</button></div><p id="historico-vazio" class="texto-secundario">Os últimos 5 endereços consultados ficam aqui para você acessar de novo.</p><ul id="lista-historico" class="lista-historico"></ul><p id="aviso-armazenamento" class="dica" hidden>O navegador bloqueou o histórico. Você pode continuar consultando normalmente.</p></section>
+      </div>
+      <aside class="lateral" aria-label="Publicidade e informações"><div class="publicidade"><span class="sobretitulo">PUBLICIDADE</span><div class="espaco-anuncio"><span class="anuncio-titulo">Sua marca<br>neste espaço</span><span>Espaço reservado para anúncio</span><span class="dimensao">300 × 250</span></div></div><div class="nota-lateral"><span class="nota-numero">01 / 02 / 03</span><p>Do CEP ao endereço,<br>em poucos cliques.</p><span>Consulte. Confira. Copie.</span></div></aside>
+    </div>
+    <section id="como-usar" class="como-usar" aria-labelledby="titulo-como"><div class="titulo-secao"><p class="sobretitulo">RÁPIDO E DIRETO</p><h2 id="titulo-como">Como consultar um CEP</h2></div><ol class="passos"><li><span class="passo-numero">01</span><h3>Digite o CEP</h3><p>Use os 8 números do endereço que você quer encontrar.</p></li><li><span class="passo-numero">02</span><h3>Confira o resultado</h3><p>Veja a rua, o bairro, a cidade e o estado em um só lugar.</p></li><li><span class="passo-numero">03</span><h3>Copie e use</h3><p>Leve o endereço para uma mensagem, etiqueta ou formulário.</p></li></ol></section>
+    <section class="duvidas" aria-labelledby="titulo-duvidas"><h2 id="titulo-duvidas">Dúvidas frequentes</h2><div><details><summary>Posso consultar sem colocar o hífen?</summary><p>Sim. Digite, por exemplo, 01001000 ou 01001-000. Ambos consultam o mesmo CEP.</p></details><details><summary>Por que meu CEP não tem rua ou bairro?</summary><p>Algumas localidades usam um CEP geral para o município. Nesse caso, a fonte pode informar apenas a cidade e o estado. O número da casa não faz parte do CEP.</p></details><details><summary>De onde vêm os endereços?</summary><p>A consulta usa o <a href="https://viacep.com.br/" target="_blank" rel="noopener noreferrer">ViaCEP</a>, com <a href="https://brasilapi.com.br/" target="_blank" rel="noopener noreferrer">BrasilAPI</a> como alternativa quando o serviço está indisponível. Estado e região são complementados pelo <a href="https://servicodados.ibge.gov.br/api/docs/localidades" target="_blank" rel="noopener noreferrer">IBGE</a>. Essas fontes recebem o CEP consultado; não solicitamos sua localização.</p></details></div></section>
+    <noscript><p class="sem-js">Ative o JavaScript no navegador para consultar um CEP.</p></noscript>
+  </main>
+  <footer class="rodape"><div class="limite rodape-conteudo"><div><a class="marca marca-rodape" href="./">cep<span class="marca-facil">fácil</span><span class="marca-ponto">.</span></a><p>Um endereço a menos para procurar.</p></div><p>Criado por <a id="link-autor" href="https://github.com/MatFernandex" target="_blank" rel="noopener noreferrer">MatFernandex</a><span class="rodape-ano">© <span id="ano">2026</span></span></p></div></footer>
+</body>
+</html>
