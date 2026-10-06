@@ -1,5 +1,7 @@
 # CEP Fácil
 
+**Site publicado:** [Abrir CEP Fácil](https://matfernandex.github.io/cep-facil/). **Código:** [MatFernandex/cep-facil](https://github.com/MatFernandex/cep-facil).
+
 Serviço web para **encontrar e copiar um endereço a partir de um CEP**, voltado a pessoas que precisam preencher um formulário, preparar uma etiqueta ou enviar um endereço por mensagem.
 
 Uma única tarefa, resolvida em poucos cliques. HTML, CSS e JavaScript puro, sem framework, banco, chave de API ou backend próprio. O navegador chama diretamente as APIs públicas.
